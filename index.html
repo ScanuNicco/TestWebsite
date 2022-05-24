@@ -7,7 +7,6 @@
 </head>
 
 <body>
-	<div id="pageWrapper">
 	<div id="navCont">
 		<a href="index.html" class="active">Home</a>
 		<a href="about.html">About</a>
@@ -19,18 +18,18 @@
 	</div>
 	<div class="pageContent">
         	<p>Welcome to my APCSP website. Lol idk what to put here go use the <a href="https://scanuproductions.com/spear.html">Shakespeare Translator</a> or something.</p> 
-	</div> 
-	<<script>
+    </div>div>
+	<script>
 		var currentImg = 1;
+        document.body.style.backgroundImage = "url('images/gallery/gallery" + currentImg + ".jpg')"
 		setInterval(function() {
 			currentImg++;
 			if(currentImg > 27){
 				currentImg = 1;
 			}
-			document.getElementById('pageWrapper').style.backgroundImage = "url('https://scanuproductions.com/images/gallery/gallery" + currentImg + ".jpg');"; 
-		}, 1000);
+			document.body.style.backgroundImage = "url('images/gallery/gallery" + currentImg + ".jpg')"; 
+		}, 5000);
 	</script>
-	</div>
 </body>
 
 </html>

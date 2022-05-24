@@ -5,7 +5,8 @@ body {
 	padding: 0px;
 	background-size: cover !important;
 	background-attachment: fixed !important;
-	background-position-y: 50% !important;
+	background-position-y: bottom !important;
+    transition: background-image 1s ease;
 }
 
 p {
