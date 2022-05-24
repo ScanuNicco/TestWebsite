@@ -84,3 +84,16 @@ img {
 	max-width: 60vw;
 	margin: 10px;
 }
+
+.sideBySide {
+	display: flex;
+}
+
+.leftSide {
+	max-width: 40vw;
+}
+
+.leftSide img {
+	width: calc(100% - 30px);
+	margin: 15px;
+}
