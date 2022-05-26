@@ -98,3 +98,7 @@ img {
 	width: calc(100% - 30px);
 	margin: 15px;
 }
+
+.rightSide p {
+    text-align: left;
+}
