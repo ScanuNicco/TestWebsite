@@ -2,33 +2,52 @@
 <html lang="en">
 
 <head>
-        <title>Projects | Rag's Rad Website</title>
-        <link rel="stylesheet" href="style.css">
+    <title>Projects | Rag's Rad Website</title>
+    <link rel="icon" href="images/ragsrad.svg">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="background: url('https://scanuproductions.com/images/gallery/gallery17.jpg');">
-	<div id="navCont">
-		<a href="index.html">Home</a>
-		<a href="about.html">About</a>
-		<a href="projects.html" class="active">Projects</a>
-		<a href="contact.html">Contact</a>
-	</div>
-	<div class="pageBanner">
-        	<h1 class="bannerHeader">My Projects</h1>
-	</div>
-	<div class="pageContent">
-		<div class="sideBySide">
-			<div class="leftSide">
-				<img src="cc1.jpg">
-				<img src="cc2.jpg">
-			</div>
-			<div class="rightSide">
-				<h2>Car Computer</h2> 
-				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My newest project... Raspberry Pi in a car!. I know it's been done before but I wanted to take a shot at it using parts I already had. The car computer is made out of 3D printed parts and sits in the top portion of a double-DIN radio slot. To reduce complexity and cost, the car computer is simply connected to my exsisting aftermarket radio with an aux cable, meaning that I didn't have to re-implement features of a regular radio such as tuning or bluetooth calling. On the front is a 4.3" touchscreen salvaged from an old HP printer, two USB ports for adding music and debugging, and some buttons for navigation. Internally everything is powered by a Raspberry Pi 2 running linux with the i3 tiling window manager and a custom electron-based music player. In addition to playing music, the car computer is connected to a USB webcam via a very long extension cable to serve as a backup camera.<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Car Computer started out as just a screen, a Raspberry Pi, and a whole rat's nest of cables hanging off my desk while I proved that I could get a usable linux system running on such a small screen. Once I got my OS set up, I designed the entire car computer in a CAD program, a difficult task that involved multiple revisions to get the mounting positions just right so that it fits into the car. In particular, I had to move the Raspberry Pi up high to clear a metal tensioning strap mounted to the back of the radio. After I had printed all the parts and assembled the computer, I began working on the software. A quick python script utilizing the i3-ipc library allowed the buttons to control opening and closing windows. Unfortenately, I was unable to find a music player that worked well on such a small screen so I had to code one myself. For this I faced a difficult decision between using the familiar JavaScript programming language or the much faster Rust programming language. I eventually ended up using a combination of the two (rust for indexing songs, JS for playing songs and the interface) because JavaScipt was just too slow at indexing the music.<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I learned a lot by completing this project, I have much more experience with NodeJS, and Electron, and I know have some basic knowlege of Rust. I also became much more familiar with linux tools like xrandr and mpv. Finally, I learned how to take apart the center console of my car which should come in handy when I try to fix the AC.</p>
-			</div>
-	</div>     
+<body style="background: url('images/gallery/gallery17.jpg');">
+    <div id="navCont">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="pageBanner">
+        <h1 class="bannerHeader">My Projects</h1>
+    </div>
+    <div class="pageContent">
+        <div class="sideBySide">
+            <div class="leftSide">
+                <img src="cc1.jpg">
+                <img src="cc2.jpg">
+            </div>
+            <div class="rightSide">
+                <h2>Car Computer</h2>
+                <p>
+                    <!-- I'm sure there's a better way do to a tab in html but this was the first thing that showed up on StackOverflow -->
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My newest project... Raspberry Pi in a car!. I know it's been done before but I wanted to take a shot at it using parts I already had. The car computer is made out of 3D printed parts and sits in the top portion of a double-DIN radio slot. To reduce complexity and cost, the car computer is simply connected to my exsisting aftermarket radio with an aux cable, meaning that I didn't have to re-implement features of a regular radio such as tuning or bluetooth calling. On the front is a 4.3" touchscreen salvaged from an old HP printer, two USB ports for adding music and debugging, and some buttons for navigation. Internally everything is powered by a Raspberry Pi 2 running linux with the i3 tiling window manager and a custom electron-based music player. In addition to playing music, the car computer is connected to a USB webcam via a very long extension cable to serve as a backup camera.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Car Computer started out as just a screen, a Raspberry Pi, and a whole rat's nest of cables hanging off my desk while I proved that I could get a usable linux system running on such a small screen. Once I got my OS set up, I designed the entire car computer in a CAD program, a difficult task that involved multiple revisions to get the mounting positions just right so that it fits into the car. In particular, I had to move the Raspberry Pi up high to clear a metal tensioning strap mounted to the back of the radio. After I had printed all the parts and assembled the computer, I began working on the software. A quick python script utilizing the i3-ipc library allowed the buttons to control opening and closing windows. Unfortenately, I was unable to find a music player that worked well on such a small screen so I had to code one myself. For this I faced a difficult decision between using the familiar JavaScript programming language or the much faster Rust programming language. I eventually ended up using a combination of the two (rust for indexing songs, JS for playing songs and the interface) because JavaScipt was just too slow at indexing the music.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I learned a lot by completing this project, I have much more experience with NodeJS, and Electron, and I know have some basic knowlege of Rust. I also became much more familiar with linux tools like xrandr and mpv. Finally, I learned how to take apart the center console of my car which should come in handy when I try to fix the AC.
+                </p>
+            </div>
+        </div>
+         <div class="sideBySide">
+            <div class="leftSide">
+                <img src="heater1.jpg">
+                <img src="heater2.jpg">
+            </div>
+            <div class="rightSide">
+                <h2>Solar Water Heater</h2>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A while back, in Physics class, we had an assignment to build a solar water heater. The idea was to heat water up so that it could be used for cooking using solar energy. Armed with a small solar panel, a pump, and my trust 3D printer, I got to work.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The main concept of my water heater was pretty simple, pump water from a resorvior to a heating element, which is located above an inverted pyramid shape lined with reflective aluminum foil, and then back into the reservior. Above the pyramid was a reflective cover flap that could be adjusted to angle the sunlight directly downward into the pyramid. Unfortenately, I don't have access to a CNC machine, so I had to 3D print the heating element, which to no one's surpise didn't work very well. The highlight of my project was the modular design of it. It was entirely constucted from cheap wooden dowels and custom 3D printed brackets, with holes for set screws to hold the dowels in place. This allowed for extemely minimal use of glue and tape, giving it a large real world advantage in that it is durable and repairable while being no harder to assemble then something made out of cardboard and tape, which was typical design in my class.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Overall, the heater was able to successfully heat water to 10 degrees over the ambient temperature in 30 minutes, starting with sub-ambient water to simulate what might be found in a natural water source or from a well. While it certainly worked to an extent, I lost to a much simpler design using a curved piece of sheetmetal and nonmoving water in a metal pipe, which heated the water up to nearly boiling. Despite that, I took away a major improvement in my skill at bulding larger and more intricate projects.<br>
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
