@@ -1,0 +1,212 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <title>Leaf Blowe Simulator!</title>
+</head>
+
+<body>
+        <canvas id="gameView" width="958" height="1047" onmousemove="mousePhysics(event)"></canvas>
+        <style>
+                body {
+                        color: #eee;
+                }
+
+                #gameView {
+                        width: 100vw;
+                        height: 100vh;
+                        position: absolute;
+                        left: 0px;
+                        top: 0px;
+                }
+
+                #menu {
+                        z-index: 1000;
+                        width: 50vw;
+                        height: 50vh;
+                        position: absolute;
+                        left: 25vw;
+                        top: 25vh;
+                        text-align: center;
+                        background: #111;
+                        box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
+                        border-radius: 10px;
+                        font-family: sans-serif;
+                }
+
+                #playButton {
+                        background: #33bb66;
+                        padding: 10px;
+                        font-size: 18pt;
+                        color: #eee;
+                        animation: sizeChange 1.8s infinite;
+                        border: none;
+                        border-radius: 3px;
+                }
+
+                @keyframes sizeChange {
+                        0% {
+                                transform: scale(1);
+                        }
+
+                        50% {
+                                transform: scale(1.08);
+                        }
+
+                        100% {
+                                transform: scale(1);
+                        }
+                }
+
+                @font-face {
+                        font-family: keyboard;
+                        src: url("fonts/keyboard.otf");
+                }
+
+                key {
+                        font-family: keyboard;
+                        font-size: xx-large;
+                }
+        </style>
+        <script>
+                var canv = document.getElementById("gameView");
+                var ctx = canv.getContext('2d', {
+                        alpha: false
+                });
+                var rScale = 1;
+                ctx.canvas.width = window.innerWidth * rScale;
+                ctx.canvas.height = window.innerHeight * rScale;
+		var leaves = [];
+		const times = [];
+		let fps;
+
+                class Obstacle {
+                        constructor(x, y) {
+                                this.x = x;
+                                this.y = y;
+                                this.xVel = 10;
+                                this.yVel = 10;
+				this.xAcc = 0.95;
+				this.yAcc = 0.95;
+                                this.origY = y;
+                                this.width = 0;
+                        }
+
+                        physics() {
+				this.xVel *= this.xAcc;
+				this.yVel *= this.yAcc;
+                                this.x += this.xVel;
+                                this.y += this.yVel;
+				if(this.x < 0){
+					this.x = window.innerWidth - 5;
+					this.xVel = -5;
+				}
+
+				if(this.x > window.innerWidth){
+					this.x = 5;
+					this.xVel = 5;
+				}
+
+				if(this.y < 0){
+					this.y = window.innerHeight - 5;
+					this.yVel = -5;
+				}
+
+				if(this.y > window.innerHeight){
+					this.y = 5;
+					this.yVel = 5;
+				}
+                        }
+
+                        draw() {
+
+                        }
+                }
+
+                class Leaf extends Obstacle {
+                        constructor(x, y) {
+                                super(x, y);
+                                this.width = 20;
+                        }
+
+                        physics() {
+                                super.physics();
+                        }
+
+                        draw() {
+				ctx.fillStyle = "#d99";
+                                ctx.fillRect(this.x, this.y, this.width, 20);
+                        }
+                }
+			
+		for(var x = 0; x < 10; x++){
+			for(var y = 0; y < 10; y++){
+				leaves.push(new Leaf(100 + 10 * x, 100 + 10 * y));
+			}
+		}
+
+                function draw() {
+			ctx.fillStyle = "#fff";
+                        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height); //draw the background image
+                        for (var i = 0; i < leaves.length; i++) { //draw each obstacle and run physics according to its functions
+                                leaves[i].physics();
+                                leaves[i].draw();
+                        }
+
+			calculateFPS();
+			ctx.fillStyle = "#33bb66";
+                        ctx.fillText("FPS: " + fps, 10, 10);
+                        requestAnimationFrame(draw);
+                }
+
+                draw();
+		
+		function mousePhysics(e){
+			var x = e.offsetX;
+			var y = e.offsetY;
+                        for (var i = 0; i < leaves.length; i++) { //draw each obstacle and run physics according to its functions
+                                var thisOne = leaves[i];
+				var diffX = x - thisOne.x;
+				var diffY = y - thisOne.y;
+				var dist = Math.sqrt(diffX ** 2 + diffY ** 2);
+				if(dist < 60){
+					thisOne.xVel = diffX / -10;
+					thisOne.yVel = diffY / -10;
+				}
+                        }
+			
+		}
+
+                function changeScale() {
+                        rScale = document.getElementById("renderScale").value / 10;
+                        ctx.canvas.width = window.innerWidth * rScale;
+                        ctx.canvas.height = window.innerHeight * rScale;
+                        //Re-position the obstacles and the player
+                        for (var i = 0; i < 15; i++) {
+                                obstacles[i].y = ctx.canvas.height - 358;
+                                obstacles[i].origY = ctx.canvas.height - 358;
+                        }
+                        obstacles[15].origY = ctx.canvas.height - 164;
+                        obstacles[16].origY = ctx.canvas.height - 164;
+                        var playerY = ctx.canvas.height - 200;
+                        //Re-draw the starting background
+                        ctx.drawImage(background, 0, 0, ctx.canvas.width, ctx.canvas.height);
+                        for (var i = 0; i < bt.length; i++) {
+                                bt[i].draw();
+                        }
+                        ctx.fillStyle = "#004b00ff";
+                        ctx.fillRect(0, ctx.canvas.height - 100, ctx.canvas.width, 100);
+                        for (var i = 0; i < obstacles.length; i++) {
+                                obstacles[i].draw();
+                        }
+                }
+
+		function calculateFPS(){
+			const now = performance.now();
+    			while (times.length > 0 && times[0] <= now - 1000) {
+    				times.shift();
+    			}
+    			times.push(now);
+    			fps = times.length;
+		}
+        </script>
+
+
+</body></html>
